@@ -1,0 +1,46 @@
+<div class="task-list-container">
+    <h2>Task List</h2>
+  
+    <!-- Filters -->
+    <div class="filters">
+      <mat-form-field appearance="outline">
+        <mat-label>Filter by Priority</mat-label>
+        <mat-select [(ngModel)]="priorityFilter" (selectionChange)="applyFilters()">
+          <mat-option value="">All</mat-option>
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="High">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Filter by Status</mat-label>
+        <mat-select [(ngModel)]="statusFilter" (selectionChange)="applyFilters()">
+          <mat-option value="">All</mat-option>
+          <mat-option value="Pending">Pending</mat-option>
+          <mat-option value="In Progress">In Progress</mat-option>
+          <mat-option value="Completed">Completed</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <!-- Task List -->
+    <mat-list *ngIf="filteredTasks.length > 0; else noTasks">
+      <mat-list-item *ngFor="let task of filteredTasks">
+        <div class="task-item">
+          <h3>{{ task.title }}</h3>
+          <p>{{ task.description }}</p>
+          <p><strong>Due Date:</strong> {{ task.dueDate }}</p>
+          <p><strong>Priority:</strong> {{ task.priority }}</p>
+          <p><strong>Status:</strong> {{ task.status }}</p>
+          <button mat-button color="warn" (click)="deleteTask(task.id)">Delete</button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  
+    <!-- No Tasks Message -->
+    <ng-template #noTasks>
+      <p class="no-tasks-message">No tasks available. Add a task to get started!</p>
+    </ng-template>
+  </div>
+  

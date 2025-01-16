@@ -1,0 +1,67 @@
+<div class="task-form-container">
+    <h2>Add/Edit Task</h2>
+    
+    <form (ngSubmit)="saveTask()" #taskForm="ngForm">
+      <!-- Task Title -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Task Title</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="task.title"
+          name="title"
+          required
+        />
+      </mat-form-field>
+  
+      <!-- Task Description -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Task Description</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="task.description"
+          name="description"
+          required
+        ></textarea>
+      </mat-form-field>
+  
+      <!-- Due Date -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Due Date</mat-label>
+        <input
+          matInput
+          type="date"
+          [(ngModel)]="task.dueDate"
+          name="dueDate"
+          required
+        />
+      </mat-form-field>
+  
+      <!-- Priority -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Priority</mat-label>
+        <mat-select [(ngModel)]="task.priority" name="priority" required>
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="High">High</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Status -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="task.status" name="status" required>
+          <mat-option value="Pending">Pending</mat-option>
+          <mat-option value="In Progress">In Progress</mat-option>
+          <mat-option value="Completed">Completed</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit">Save Task</button>
+        <button mat-raised-button type="button" (click)="resetForm()">Reset</button>
+      </div>
+    </form>
+  </div>
+  
