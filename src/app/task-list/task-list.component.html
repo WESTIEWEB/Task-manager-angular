@@ -1,6 +1,12 @@
 <div class="task-list-container">
-    <h2>Task List</h2>
-  
+    <div class="tasklist-header">
+        <h2>Task List</h2>
+        <!-- Add Task Button -->
+        <div class="add-task-button">
+            <button mat-raised-button color="primary" (click)="openTaskForm()">Add Task</button>
+        </div>
+    </div>
+
     <!-- Filters -->
     <div class="filters">
       <mat-form-field appearance="outline">

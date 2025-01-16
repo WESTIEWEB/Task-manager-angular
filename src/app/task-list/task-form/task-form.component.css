@@ -1,0 +1,15 @@
+.task-form-container {
+    margin: 20px;
+  }
+  
+  .form-field {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
