@@ -56,4 +56,28 @@ export class GenericService {
         // Display SweetAlert
         swal(alertOptions.title, alertOptions.text, alertOptions.icon as any);
       }
+
+
+      showDeleteConfirmation(
+        title: string,
+        message: string,
+        onConfirm: () => void
+      ): void {
+        swal({
+          title,
+          text: message,
+          icon: 'warning',
+          buttons: ['Cancel', 'Delete'],
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            // Execute the callback if user confirms
+            onConfirm();
+          } else {
+            // Optional: Show an alert if the action is canceled
+            return
+          }
+        });
+      }
+      
 }

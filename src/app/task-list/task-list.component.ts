@@ -9,6 +9,7 @@ import { TaskService } from '../services/task.service';
 import { FormsModule } from '@angular/forms';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { MatIconModule } from '@angular/material/icon';
+import { GenericService } from '../services/generic.service';
 
 @Component({
   selector: 'app-task-list',
@@ -35,7 +36,8 @@ export class TaskListComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private dialog: MatDialog,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private genericService: GenericService
   ) {}
 
   ngOnInit(): void {
@@ -78,7 +80,12 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(taskId: string): void {
-    this.taskService.deleteTask(taskId);
-    this.loadTasks();
+    this.genericService.showDeleteConfirmation('Are you sure!', 'This action cannot be undone.', () => {
+      this.taskService.deleteTask(taskId);
+      this.loadTasks();
+
+      this.genericService.showAlert('success', 'Task deleted successfully');
+
+    })
   }
 }
