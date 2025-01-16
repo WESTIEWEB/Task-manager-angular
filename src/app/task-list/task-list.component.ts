@@ -44,7 +44,7 @@ export class TaskListComponent implements OnInit {
     this.loadTasks();
   }
 
-  openTaskForm(data = {} as unknown as TaskModel): void {
+  openTaskForm(data = null as unknown as TaskModel): void {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '600px',
       panelClass: 'task-dialog',
@@ -83,8 +83,6 @@ export class TaskListComponent implements OnInit {
     this.genericService.showDeleteConfirmation('Are you sure!', 'This action cannot be undone.', () => {
       this.taskService.deleteTask(taskId);
       this.loadTasks();
-
-      this.genericService.showAlert('success', 'Task deleted successfully');
 
     })
   }

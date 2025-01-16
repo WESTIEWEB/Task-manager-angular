@@ -60,6 +60,20 @@ export class TaskFormComponent implements OnInit {
   }
 
   saveTask(): void {
+    if (!this.task.title.trim()) {
+      this.genericService.showAlert('error', 'Task title is required.');
+      return;
+    }
+  
+    if (!this.task.description.trim()) {
+      this.genericService.showAlert('error', 'Task description is required.');
+      return;
+    }
+  
+    if (!this.task.dueDate) {
+      this.genericService.showAlert('error', 'Due date is required.');
+      return;
+    }
     this.task.id = this.task.id || uuidv4();
     this.taskService.saveTask(this.task);
     this.taskSaved.emit();
@@ -102,5 +116,20 @@ export class TaskFormComponent implements OnInit {
   // a method for closing dialog, and also tells the parent if it should reload
   closeDialog(shouldRemount: boolean = false) {
     this.dialogRef.close(shouldRemount);
+  }
+
+  validateForm(task: TaskModel): boolean {
+    let isValid = true;
+    if(!task.title) {
+      isValid = false;
+    }
+    if(!task.dueDate) {
+      isValid = false;
+    }
+    if(!task.description) {
+      isValid = false;
+    }
+
+    return isValid
   }
 }

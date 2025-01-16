@@ -61,7 +61,7 @@
   
       <!-- Buttons -->
       <div class="form-actions">
-        <button mat-raised-button color="primary" type="submit">Save Task</button>
+        <button mat-raised-button [disabled]="!task.title || !task.description || !task.dueDate || !task.status" color="primary" type="submit">Save Task</button>
         <button mat-raised-button type="button" (click)="resetForm()">Reset</button>
       </div>
     </form>
