@@ -1,5 +1,7 @@
 <div class="task-form-container">
     <h2>Add/Edit Task</h2>
+
+    <mat-icon (click)="closeDialog()" style="position: absolute; right: 10px; top: 10px; color: #F00; cursor: pointer; ">close</mat-icon>
     
     <form (ngSubmit)="saveTask()" #taskForm="ngForm">
       <!-- Task Title -->

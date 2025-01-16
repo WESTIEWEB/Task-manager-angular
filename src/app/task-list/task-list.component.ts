@@ -42,7 +42,8 @@ export class TaskListComponent implements OnInit {
   openTaskForm(): void {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '600px',
-      panelClass: 'task-dialog'
+      panelClass: 'task-dialog',
+      disableClose: true
     });
   
     // After the dialog is closed, handle the returned task data

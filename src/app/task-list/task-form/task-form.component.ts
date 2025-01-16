@@ -1,14 +1,16 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Inject } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { TaskService } from '../../services/task.service';
 import { TaskModel } from '../../models/task.model';
 import { v4 as uuidv4 } from 'uuid';
 import { MatListModule } from '@angular/material/list';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-task-form',
@@ -22,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSelectModule,
     MatListModule,
+    MatIconModule
   ],
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css']
@@ -42,7 +45,11 @@ export class TaskFormComponent {
 
   @Output() taskSaved = new EventEmitter<void>();
 
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    public dialogRef: MatDialogRef<TaskFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: TaskModel
+  ) {}
 
   saveTask(): void {
     this.task.id = this.task.id || uuidv4();
@@ -78,5 +85,9 @@ export class TaskFormComponent {
   deleteTask(taskId: string): void {
     this.taskService.deleteTask(taskId);
     this.loadTasks();
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
   }
 }
