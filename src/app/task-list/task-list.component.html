@@ -30,6 +30,8 @@
       </mat-form-field>
     </div>
   
+</div>
+<div class="task-list-container">
     <!-- Task List -->
     <mat-list *ngIf="filteredTasks.length > 0; else noTasks">
       <mat-list-item *ngFor="let task of filteredTasks">
@@ -39,14 +41,20 @@
           <p><strong>Due Date:</strong> {{ task.dueDate }}</p>
           <p><strong>Priority:</strong> {{ task.priority }}</p>
           <p><strong>Status:</strong> {{ task.status }}</p>
-          <button mat-button color="warn" (click)="deleteTask(task.id)">Delete</button>
+          <div style="display: flex; gap: 10px;">
+            <button mat-button color="warn" (click)="openTaskForm(task)">Edit <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="warn" (click)="deleteTask(task.id)">Delete
+                <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </div>
       </mat-list-item>
     </mat-list>
-  
+    
     <!-- No Tasks Message -->
     <ng-template #noTasks>
       <p class="no-tasks-message">No tasks available. Add a task to get started!</p>
     </ng-template>
-  </div>
+</div>
   

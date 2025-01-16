@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -8,6 +8,7 @@ import { TaskModel } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { FormsModule } from '@angular/forms';
 import { TaskFormComponent } from './task-form/task-form.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-task-list',
@@ -19,7 +20,8 @@ import { TaskFormComponent } from './task-form/task-form.component';
     MatSelectModule,
     MatListModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
@@ -32,25 +34,29 @@ export class TaskListComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.loadTasks();
   }
 
-  openTaskForm(): void {
+  openTaskForm(data = {} as unknown as TaskModel): void {
     const dialogRef = this.dialog.open(TaskFormComponent, {
       width: '600px',
       panelClass: 'task-dialog',
-      disableClose: true
+      disableClose: true,
+      data: data
     });
   
     // After the dialog is closed, handle the returned task data
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        console.log(result)
         // Add the new task to the tasks array
-        this.tasks.push(result);
+        this.loadTasks();
+        this.cd.detectChanges();
   
         // Reapply the filters to ensure the new task is shown based on the current filters
         this.applyFilters();

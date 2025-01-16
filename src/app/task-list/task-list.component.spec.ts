@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskListComponent } from './task-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
@@ -8,7 +9,7 @@ describe('TaskListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskListComponent]
+      imports: [TaskListComponent, BrowserAnimationsModule]
     })
     .compileComponents();
     
