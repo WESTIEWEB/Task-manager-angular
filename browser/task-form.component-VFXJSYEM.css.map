@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/task-list/task-form/task-form.component.css"],
+  "sourcesContent": [".task-form-container {\r\n    margin: 20px;\r\n  }\r\n  \r\n  .form-field {\r\n    display: block;\r\n    margin-bottom: 20px;\r\n    width: 100%;\r\n  }\r\n  \r\n  .form-actions {\r\n    display: flex;\r\n    gap: 10px;\r\n  }\r\n  "],
+  "mappings": "AAAA,CAAC,oBAAD,OACY,IACV,CAEA,CAAC,WACC,QAAS,MACT,cAAe,KACf,MAAO,IACT,CAEA,CAAC,aACC,QAAS,KACT,IAAK,IACP",
+  "names": []
+}
