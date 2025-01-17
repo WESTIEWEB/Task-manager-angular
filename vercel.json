@@ -1,6 +1,19 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
+    "version": 2,
+    "builds": [
+      {
+        "src": "angular.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist/task-manager-angular"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
     ]
   }
   
