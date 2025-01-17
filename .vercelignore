@@ -1,5 +1,6 @@
 # Exclude unnecessary files
 node_modules
+dist
 src
 e2e
 tests
